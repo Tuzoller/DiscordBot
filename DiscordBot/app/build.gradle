@@ -4,12 +4,11 @@ plugins {
 
 repositories {
     mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
     implementation("net.dv8tion:JDA:5.0.0-alpha.13")
-    implementation "com.twitter:twitter-api-java-sdk:2.0.3"
+    compile 'org.twitter4j:twitter4j-core:4.0.7'
 }
 
 application {

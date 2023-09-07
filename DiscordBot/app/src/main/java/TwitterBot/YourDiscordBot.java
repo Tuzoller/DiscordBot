@@ -1,14 +1,13 @@
-package discordbot;
-
-import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.*;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import twitter4j.Twitter;
+package TwitterBot;
 
 import javax.security.auth.login.LoginException;
-import java.util.ArrayList;
-import java.util.List;
+
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import twitter4j.Twitter;
 
 public class YourDiscordBot extends ListenerAdapter {
     private Twitter twitter;
@@ -25,6 +24,8 @@ public class YourDiscordBot extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
+        // ... (Rest of your code)
+    
         if (event.getAuthor().isBot()) return;
 
         String message = event.getMessage().getContentRaw();
@@ -77,41 +78,4 @@ public class YourDiscordBot extends ListenerAdapter {
         }
     }
 
-    // Define methods for handling each Twitter command (tweet, mention, timeline, follow, etc.)
-
-    private void tweet(String tweetText, MessageChannel channel) {
-       
-    }
-
-    private void mention(String username, MessageChannel channel) {
-        
-    }
-
-    private void timeline(User author, MessageChannel channel) {
-        
-    }
-
-    private void follow(String username, MessageChannel channel) {
-        
-    }
-
-    private void retweet(String statusId, MessageChannel channel) {
-      
-    }
-
-    private void favorite(String statusId, MessageChannel channel) {
-        
-    }
-
-    private void messageUser(String message, MessageChannel channel) {
-        
-    }
-
-    private void searchUsers(String query, MessageChannel channel) {
-       
-    }
-
-    private void listFollowers(User author, MessageChannel channel) {
-    
-    }
 }
