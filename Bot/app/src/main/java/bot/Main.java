@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 //import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -53,21 +54,18 @@ public class Main extends ListenerAdapter{
     }
 
     private Long ID = 1148678336629973153L;
+    private Long textChannelID = 1148678337099743236L;
 
     //On bot ready
     @Override
     public void onReady(@Nonnull ReadyEvent event){
-        // JDA jda = event.getJDA();
-        // for(Guild guild : jda.getGuilds()){
-        //     for(TextChannel channel : guild.getTextChannels()){
-        //         channel.sendMessage("Online!").queue();
-        //         return;
-        //     }
-        //}
-
+        
         Guild guild = event.getJDA().getGuildById(ID);
+        TextChannel channel = event.getJDA().getTextChannelById(textChannelID);
+  
         if(guild != null){
             guild.upsertCommand("speak", "Says hello").queue();
+            channel.sendMessage("Online!").queue();
         }
         else{
             System.out.println("Could not find the guild corresponding with the ID of: " + ID);
