@@ -2,6 +2,8 @@ package discordbot;
 
 import javax.security.auth.login.LoginException;
 
+import Commands.Speak;
+import Listen.Listeners;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -10,11 +12,12 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 public class Main{
 
-    private static String Key = "MTE0OTA4NTIwNzgyODM2NTM2Mw.GWdMbG.IeIJyx83RSiooMCZiRm2tEqFZrMIs5BgD2ArR0";
+    private static String Key = "MTE0OTA4NTIwNzgyODM2NTM2Mw.GNMjjX.sWJOnS3jTljSwVX3mLS5NNFA_0Owmu91rVxP_U";
 
     public static void main(String[] args) throws LoginException, InterruptedException{
         JDABuilder builder = JDABuilder.createDefault(Key);
         builder.addEventListeners(new Listeners());
+        builder.addEventListeners(new Speak());
         
         //Sets the discord bots activity in the discord server
         builder.setActivity(Activity.watching("Linus Tech Tips"));
