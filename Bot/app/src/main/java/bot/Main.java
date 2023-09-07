@@ -54,6 +54,7 @@ public class Main extends ListenerAdapter{
 
     private Long ID = 1148678336629973153L;
 
+    //On bot ready
     @Override
     public void onReady(@Nonnull ReadyEvent event){
         // JDA jda = event.getJDA();
@@ -62,7 +63,7 @@ public class Main extends ListenerAdapter{
         //         channel.sendMessage("Online!").queue();
         //         return;
         //     }
-        // }
+        //}
 
         Guild guild = event.getJDA().getGuildById(ID);
         if(guild != null){
@@ -74,11 +75,12 @@ public class Main extends ListenerAdapter{
         
     }
 
+    //Slash commands
     @Override
     public void onSlashCommandInteraction(@Nonnull  SlashCommandInteractionEvent event){
-        if(!event.getName().equals("speak")) return;
+        if(!event.getName().equals("speak")) return; //String has to be all lowercase
 
         //Have to reply to interactions
-        event.reply("Hello World").queue();
+        event.reply("Hello World").queue(); //Must queue responses
     }
 }
