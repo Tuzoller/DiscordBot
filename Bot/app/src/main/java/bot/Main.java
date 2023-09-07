@@ -17,7 +17,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 public class Main extends ListenerAdapter{
 
-    private static String Key = "MTE0OTA4NTIwNzgyODM2NTM2Mw.GNMjjX.sWJOnS3jTljSwVX3mLS5NNFA_0Owmu91rVxP_U";
+    private static String Key = "MTE0OTA4NTIwNzgyODM2NTM2Mw.GOdy9B.54OxOyrN0d1UkHO_S-Doro5QTtkP0QLFqkznmw";
 
  public static void main(String[] args) throws LoginException, InterruptedException{
         JDABuilder builder = JDABuilder.createDefault(Key);
