@@ -1,2 +1,0 @@
-BOT URL:
-https://discord.com/api/oauth2/authorize?client_id=1149085207828365363&permissions=8&scope=bot
