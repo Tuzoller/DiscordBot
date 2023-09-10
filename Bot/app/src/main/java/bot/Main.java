@@ -1,28 +1,26 @@
-package bot;
+package Bot;
 
-import javax.annotation.Nonnull;
 import javax.security.auth.login.LoginException;
 
+import Boot.Ready;
+import Commands.Speak;
+import Commands.Users;
+import IDS.ID;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-//import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.events.ReadyEvent;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
-public class Main extends ListenerAdapter{
-
-    private static String Key = "MTE0OTA4NTIwNzgyODM2NTM2Mw.GooMJb.JzXVg2yPaHnTdKkDJFfxbpWUbqqExc78OefsCc";
+public class Main {
 
     public static void main(String[] args) throws LoginException, InterruptedException{
-        JDABuilder builder = JDABuilder.createDefault(Key);
-        builder.addEventListeners(new Main());
+        JDABuilder builder = JDABuilder.createDefault(ID.Key);
+        Object[] events = addEvents();
 
+        for(int i = 0; i < events.length; i++) {
+            builder.addEventListeners(events[i]);
+        }
         
         //Sets the discord bots activity in the discord server
         builder.setActivity(Activity.watching("Linus Tech Tips"));
@@ -53,32 +51,11 @@ public class Main extends ListenerAdapter{
         builder.setLargeThreshold(50);
     }
 
-    private Long ID = 1148678336629973153L;
-    private Long textChannelID = 1148678337099743236L;
-
-    //On bot ready
-    @Override
-    public void onReady(@Nonnull ReadyEvent event){
-        
-        Guild guild = event.getJDA().getGuildById(ID);
-        TextChannel channel = event.getJDA().getTextChannelById(textChannelID);
-  
-        if(guild != null){
-            guild.upsertCommand("speak", "Says hello").queue();
-            channel.sendMessage("Online!").queue();
-        }
-        else{
-            System.out.println("Could not find the guild corresponding with the ID of: " + ID);
-        }
-        
+    private static Object[] addEvents(){
+        Object[] events = {new Speak(),
+            new Ready(),
+            new Users()};
+        return events;
     }
-
-    //Slash commands
-    @Override
-    public void onSlashCommandInteraction(@Nonnull  SlashCommandInteractionEvent event){
-        if(!event.getName().equals("speak")) return; //String has to be all lowercase
-
-        //Have to reply to interactions
-        event.reply("Hello World").queue(); //Must queue responses
-    }
+    
 }
